@@ -1,0 +1,30 @@
+{
+  "name": "mii-chart.js",
+  "version": "0.0.1",
+  "description": "mii-chart.js: simple (canvas) chart",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "node ./deploy.js"
+  },
+  "engines": {
+    "node": ">=0.13.0"
+  },
+  "keywords": [
+    "app-logger",
+    "nodejs axios",
+    "axios"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ch3ll0v3k/mii-chart.js.git"
+  },
+  "files": [
+    "src"
+  ],
+  "author": "https://github.com/ch3ll0v3k",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "mii-logger.js": "^1.1.91"
+  }
+}

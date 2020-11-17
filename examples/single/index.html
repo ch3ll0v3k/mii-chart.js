@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8"/>
+  <title>Mii-Chart</title>
+
+  <script type="text/javascript" src="../../src/mii-chart.js"></script>
+
+  <style type="text/css">
+    html, body {
+      padding: 0; margin: 0; width: 100%; height: 100%;
+    }
+
+    .mii-chart-wrapper{
+      margin: 5px auto;
+      width: 98%; height: 210px; box-sizing: border-box; padding: 5px; 
+      box-shadow: 0 0 2px #333;
+    }
+
+    .mii-chart-canvas{
+      width: 100%; height: 100%;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+
+  window.addEventListener('load', async()=>{
+
+    const Charts = [];
+
+    for( const id of [0,1,2] ){
+      const mChart = new MiiChart({
+        clrIndex: id,
+        canvasId: `mii-chart-${id}`,
+        bgColor: '#000',
+        fgColor: '#0F0',
+        showGrid: true,
+        gridSizeX: 50,
+        gridSizeY: 50,
+        gridColor: 'rgba(127,127,127, 0.5)',
+        stepX: 10,
+      });
+
+      mChart.tmp = mChart.randFloat(0, 100);
+      Charts.push( mChart );
+    }
+
+    const MULL = 0.8;
+
+    const chartUpdateInterval_t = setInterval(async()=>{
+      for( const mChart of Charts ){
+
+        if( mChart.randFloat(0,100) >= 80 ){
+          mChart.tmp += mChart.randFloat(0, 1) * MULL;
+        }else{
+          mChart.tmp += mChart.randFloat(-1, 1) * MULL;
+        }
+
+        mChart.pushData({ A: mChart.tmp });
+        mChart.draw();
+      }
+    },100);
+
+  });    
+
+  </script>
+
+</head>
+<body>
+
+  <div class="mii-chart-wrapper" id="mii-chart-0-wrapper">  
+    <canvas class="mii-chart-canvas" id="mii-chart-0"></canvas>
+  </div>
+
+  <div class="mii-chart-wrapper" id="mii-chart-1-wrapper">  
+    <canvas class="mii-chart-canvas" id="mii-chart-1"></canvas>
+  </div>
+
+  <div class="mii-chart-wrapper" id="mii-chart-2-wrapper">  
+    <canvas class="mii-chart-canvas" id="mii-chart-2"></canvas>
+  </div>
+
+</body>
+</html>
